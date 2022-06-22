@@ -14,18 +14,17 @@ class BezoekerController extends AbstractController
     public function index(): Response
     {
         return $this->render('bezoeker/index.html.twig', [
-            'controller_name' => 'BezoekerController',
+            'controller_name' => 'VisitController',
         ]);
     }
 
     /**
-     * @Route("/trainings_aanbod", name="trainings_aanbod")
+     * @Route("/trainingsaanbod", name="trainings_aanbod")
      */
-    public function trainings_aanbod(): Response
+    public function trainingsaanbod(): Response
     {
-
         return $this->render('bezoeker/index.html.twig', [
-            'controller_name' => 'BezoekerController',
+            'controller_name' => 'VisitController',
         ]);
     }
 

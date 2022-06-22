@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +19,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('username')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -43,6 +45,22 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('voornaam')
+            ->add('tussenvoegsel')
+            ->add('achternaam')
+            ->add('geboortedatum',DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
+                'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
+            ])
+            ->add('gender', ChoiceType::class, array(
+                'choices'  => array(
+                    'Male'   => 'Male',
+                    'Female' => 'Female',
+                ),
+            ))
+            ->add('adres')
+            ->add('postcode')
+            ->add('woonplaats')
+            ->add('email')
         ;
     }
 

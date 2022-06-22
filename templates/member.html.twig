@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <header>
+            <div class="row" >
+
+                <div class="header-row lead" >
+                    <h1 class="display-3">Training<span class="text-danger">Factory</span></h1>
+                </div>
+
+            </div>
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success">
+                    <strong>Success!</strong> {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    <strong>Fout!</strong> Gebruiker {{ message }}
+                </div>
+            {% endfor %}
+        </header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('app_bezoeker') }}">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('trainings_aanbod') }}">trainings aanbod </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app_register')}}">registreren</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">contact</a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app_logout')}}">You are logged in as {{ app.user.username }}, uitloggen</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-sm-4 d-none d-sm-block">
+                <div class="card">
+                    <img class="card-img-top"  src={{ asset('images/DSC_0598-min.jpg')}} />
+                    <div class="card-body">
+                        <h4 class="card-title">The Gym</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+                <div class="card">
+                    <img class="card-img-top"  src={{ asset('images/DSC_1384.jpg')}} />
+                    <div class="card-body">
+                        <h4 class="card-title">Sportschool | BJJ | Fitness</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+                <div class="card">
+                    <img class="card-img-top"  src={{ asset('images/DSC_0954.jpg')}} />
+                    <div class="card-body">
+                        <h4 class="card-title">Kickboksen</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+        <footer>
+            <i class="bi bi-linkedin float-end img-thumbnail "   ></i>
+            <i class="bi bi-twitter float-end img-thumbnail "   ></i>
+            <i class="bi bi-pinterest float-end img-thumbnail "  ></i>
+
+            <p class="clearfix   text-muted text-center">&copy;Afdeling software development Tinwerf 10, 2544 ED Den Haag.</p>
+        </footer>
+    </div>
+{%  endblock %}
